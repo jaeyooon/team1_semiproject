@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+ 
+  	.content{
+		margin: 20px 150px 0 150px; 
+		display: flex;
+		justify-content:center;
+		border: 2px solid blue;    /*영역 표시를 위한 것*/
+		height: 500px;    /*영역 표시를 위한 것*/
+	}
+  	div{
+  		font-family: 'Roboto Mono', monospace;
+  	}
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+    
+  .carousel-inner img {
+      width: 100%; /* Set width to 100% */
+      margin: auto;
+      min-height:200px;
+  }
+
+  /* Hide the carousel text when the screen is less than 600 pixels wide */
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none; 
+    }
+  }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="/">Multi Music🎼</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+         <li class="active"><a href="/best">Best</a></li>
+              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">건반 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/cate/cate11">스타인웨이</a></li>
+                  <li><a href="/cate/cate12">삼익</a></li>
+                </ul>
+              </li>
+              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">관악기 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/cate/cate21">야마하</a></li>
+                  <li><a href="/cate/cate22">르블랑</a></li>
+                </ul>
+              </li>
+              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">현악기 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/cate/cate31">알버트웨버</a></li>
+                  <li><a href="/cate/cate32">효정</a></li>
+                </ul>
+              </li>
+              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">기타 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/cate/cate41">마틴</a></li>
+                  <li><a href="/cate/cate42">테일러</a></li>
+                </ul>
+              </li>
+              <li><a href="/shop">Shop</a></li>
+        </ul>
+      </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          <li><a href="/signin"><span class="glyphicon glyphicon-edit"></span> Sign In</a></li>
+          <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Center Start -->
+    <div th:insert="${center} ? ${center} : maincenter"> 
+    </div>
+<!-- Main Center End -->
+
+
+</body>
+</html>

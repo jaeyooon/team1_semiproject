@@ -1,0 +1,40 @@
+<meta charset="utf-8">
+
+<style>
+.container{
+display: flex;
+flex-direction: column;
+justify-content: center; 
+align-items: center;
+}
+</style>
+
+<div class="content">
+	<div class="container">
+	<div class="col-sm-5">
+	  <h2>Sign In</h2><br>
+	  <form id="register_form">
+	    <div class="form-group">
+	      <label for="id">ID:</label>
+	      <input type="text" class="form-control" id="id" placeholder="Enter ID" name="id">
+	      <span id="ispan"></span>
+	    </div>
+	    <div class="form-group">
+	      <label for="pwd">Password:</label>
+	      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+	    </div>
+	     <div class="form-group">
+	      <label for="pwd2">Password2:</label>
+	      <input type="password" class="form-control" id="pwd2" placeholder="Enter password"> <!-- 서버에 보낼 필요없으므로 name 지움 -->
+	      <span id="pspan"></span>
+	    </div>
+	     <div class="form-group">
+	      <label for="name">Name:</label>
+	      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
+	    </div>
+	    
+	    <button class="btn btn-default">REGISTER</button>
+	  </form>
+	</div>
+	</div>
+</div>
