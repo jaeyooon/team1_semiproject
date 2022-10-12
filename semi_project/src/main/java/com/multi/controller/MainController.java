@@ -24,9 +24,9 @@ public class MainController {
 		return "main";
 	}
 	
-	@RequestMapping("/signin")
-	public String signin(Model model) {
-		model.addAttribute("center", "signin");
+	@RequestMapping("/signup")
+	public String signup(Model model) {
+		model.addAttribute("center", "signup");
 		return "main";
 	}
 	
