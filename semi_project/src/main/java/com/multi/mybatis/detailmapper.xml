@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.DetailMapper">
+
+	<select id="select" parameterType="Integer" resultType="DetailDTO">
+		SELECT de.detailid, it.itemid, pu,purchaseid, de.count FROM detail de
+		INNER JOIN item it ON it.itemid = de.itemid
+		INNER JOIN purchase pu ON pu.purchaseid = de.purchaseid
+		WHERE de.detailid = #{detailid}
+	</select>
+	<select id="selectall" resultType="DetailDTO">
+		SELECT * FROM detail
+	</select>
+	<insert id="insert" parameterType="DetailDTO">
+		INSERT INTO detail VALUES (#{detailid}, #{itemid}, #{purchaseid}, #{count})
+	</insert>
+	<update id="update" parameterType="DetailDTO">
+		UPDATE detail itemid = #{itemid}, purchaseid = #{purchaseid}  WHERE detailid = #{detailid}
+	</update>
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM detail WHERE detailid = #{detailid}
+	</delete>
+
+</mapper>

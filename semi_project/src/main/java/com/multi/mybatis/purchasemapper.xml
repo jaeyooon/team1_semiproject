@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.PurchaseMapper">
+
+	<select id="select" parameterType="Integer" resultType="PurchaseDTO">
+		SELECT pu.purchaseid, pu.name, pu.receiver, pu.address, pu.number, pu.pay, pu.totalprice
+		FROM purchase pu
+		INNER JOIN customer cu ON pu.custid = cu.custid
+		WHERE pu.purchaseid = #{purchaseid}
+	</select>
+	<select id="selectall" resultType="PurchaseDTO">
+		SELECT * FROM purchase 
+	</select>
+	<insert id="insert" parameterType="PurchaseDTO">
+		INSERT INTO purchase VALUES (NULL, #{custid}, #{name}, #{receiver}, #{address}, #{number}, #{pay}, NULL)
+	</insert>
+	<update id="update" parameterType="PurchaseDTO">
+		UPDATE purchase custid = #{custid} WHERE purchaseid = #{purchaseid}
+	</update>
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM purchase WHERE purchaseid=#{purchaseid}
+	</delete>
+
+</mapper>
