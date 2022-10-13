@@ -10,8 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.multi.dto.CustomerDTO;
+import com.multi.dto.GoodDTO;
 import com.multi.dto.ItemDTO;
 import com.multi.service.CustomerService;
+import com.multi.service.GoodService;
 import com.multi.service.ItemService;
 
 @Controller
@@ -22,6 +24,9 @@ public class MainController {
 	
 	@Autowired
 	ItemService item_service;
+	
+	@Autowired
+	GoodService good_service;
 	
 //	밑에 매핑이랑 겹처서 일단 주석 해두었습니다...
 //	@RequestMapping("/")
@@ -92,8 +97,16 @@ public class MainController {
 	}
 	
 	@RequestMapping("/good")
-	public String good(Model model) {
-		model.addAttribute("center", "getgoodlist");
+	public String good(Model model, String id) {
+		List<GoodDTO> list = null;
+		try {
+			list = good_service.getallgood(id);
+			model.addAttribute("list", list);
+			model.addAttribute("center", "getgoodlist");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return "main";
 	}
 	

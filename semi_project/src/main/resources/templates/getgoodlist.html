@@ -1,12 +1,41 @@
 <meta charset="utf-8">
 <style>
-#goodlist{
-	justify-content: flex-start; 
-	display: flex; 
-}
+	#wishlist{
+		justify-content: flex-start; 
+		display: flex; 
+	}
+	table > tbody > tr > td > a >img {
+		width: 140px;
+	}
+	
+	.table table-hover{ 
+	width: 80%; 
+	}
+
 </style>
 
-<div class="content" id="goodlist">
-	<h2>Good List</h2>
+<div class="content" id="wishlist">
+
+	<div class="container">
+	  <h2>Wish List</h2><br>
+	  <table class="table table-hover">
+	    <thead>
+	      <tr>
+	        <th>ItemID</th>
+	        <th>Image</th>
+	        <th>Name</th>
+	        <th>Price</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr th:each="g:${list}">
+	        <td th:text="${g.itemid}">itemid</td>
+	        <td><a href="#"><img th:src="'/img/' + ${g.item_image}"></a></td>
+	        <td th:text="${g.item_name}">item_name</td>
+	        <td th:text="${g.item_price}+'원'">item_price</td>
+	      </tr>
+	    </tbody>
+	  </table>
+	</div>
 	
 </div>
