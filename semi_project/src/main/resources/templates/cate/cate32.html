@@ -3,12 +3,39 @@
 #cate32{
 	justify-content: flex-start; 
 	display: flex; 
-}
+	}	
+	table > tbody > tr > td > img {
+		width:100px;
+	} 
+	table > tbody > tr > td > img:hover {
+		width:100px;
+	} 
 </style>
 
-
-<div class="content" id="cate32">
-<h2>Cate3_2 Page</h2>
-<!-- 여기서부터 코딩해주세요 -->
-
+<div class="container" id="cate32">
+	<h2>효정</h2>
+	<!-- 여기서부터 코딩해주세요 -->
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Image</th>
+				<th>No</th>
+				<th>Name</th>
+				<th>Price</th>
+				<th>Checkstatus</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="it : ${itemlist}">
+				<td>
+					<a th:href="@{/info(id=${it.itemid})}">
+						<img th:src="'/img/'+${it.image}">
+					</a>
+				</td>
+				<td th:text="${it.itemid}">no</td>
+				<td th:text="${it.pname}">name</td>
+				<td th:text="${it.price}">price</td>
+				<td th:text="${it.checkstatus}">status</td>
+		</tbody>
+	</table>
 </div>
