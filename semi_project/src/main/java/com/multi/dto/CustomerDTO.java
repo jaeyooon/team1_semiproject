@@ -20,7 +20,6 @@ public class CustomerDTO {
 	private String birth;
 	private String gender;
 	private String address;
-	private int tier;
-	private String coupon;
+
 
 }

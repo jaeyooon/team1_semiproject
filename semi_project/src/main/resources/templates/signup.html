@@ -1,4 +1,41 @@
 <meta charset="utf-8">
+<script>
+$(document).ready(function(){
+	$('#register_form > button').click(function(){
+		$('#register_form').attr({
+			'action':'/signupimpl',
+			'method':'post'
+		});
+		$('#register_form').submit();
+	});
+	
+	$('#pwd2').keyup(function(){
+		var pwd = $('#pwd').val();
+		var pwd2 = $('#pwd2').val();
+		if(pwd == pwd2){
+			$('#pspan').text('비밀번호 일치');
+		}else{
+			$('#pspan').text('비밀번호 불일치');
+		}
+	});
+	
+	$('#id').keyup(function(){
+		var id = $(this).val();
+		$.ajax({
+			url:'/checkid',
+			data:{'cid':id},
+			success:function(result){
+				if(result == 't'){
+					$('#ispan').text('Available');
+				}else{
+					$('#ispan').text('Not Available');
+				}
+			}
+		});
+		
+	});
+});
+</script>
 
 <style>
 .container{
@@ -12,28 +49,43 @@ align-items: center;
 <div class="content">
 	<div class="container">
 	<div class="col-sm-5">
-	  <h2>Sign Up</h2><br>
+	  <h2>회원 가입</h2><br>
 	  <form id="register_form">
 	    <div class="form-group">
-	      <label for="id">ID:</label>
-	      <input type="text" class="form-control" id="id" placeholder="Enter ID" name="id">
+	      <label for="custid">아이디:</label>
+	      <input type="text" class="form-control" id="custid" placeholder="Enter ID" name="custid">
 	      <span id="ispan"></span>
 	    </div>
 	    <div class="form-group">
-	      <label for="pwd">Password:</label>
+	      <label for="pwd">비밀번호:</label>
 	      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
 	    </div>
 	     <div class="form-group">
-	      <label for="pwd2">Password2:</label>
+	      <label for="pwd2">비밀번호 확인:</label>
 	      <input type="password" class="form-control" id="pwd2" placeholder="Enter password"> <!-- 서버에 보낼 필요없으므로 name 지움 -->
 	      <span id="pspan"></span>
 	    </div>
 	     <div class="form-group">
-	      <label for="name">Name:</label>
+	      <label for="name">이름:</label>
 	      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
 	    </div>
-	    
-	    <button class="btn btn-default">REGISTER</button>
+	     <div class="form-group">
+	      <label for="tel">연락처:</label>
+	      <input type="text" class="form-control" id="tel" placeholder="Enter TEL number" name="tel">
+	    </div>
+	     <div class="form-group">
+	      <label for="birth">생일:</label>
+	      <input type="text" class="form-control" id="birth" placeholder="예) 2000-01-01" name="birth">
+	    </div>
+	     <div class="form-group">
+	      <label for="gender">남:<input type="checkbox" id="gender" value="M" name="gender"></label>
+	      <label for="gender">여:<input type="checkbox" id="gender" value="F" name="gender"></label>
+	    </div>
+	     <div class="form-group">
+	      <label for="address">주소:</label>
+	      <input type="text" class="form-control" id="address" placeholder="예) 서울 강동구" name="address">
+	    </div>
+	    <button class="btn btn-default">가입하기</button>
 	  </form>
 	</div>
 	</div>
