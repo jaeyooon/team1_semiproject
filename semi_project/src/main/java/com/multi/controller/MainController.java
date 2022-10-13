@@ -1,5 +1,7 @@
 package com.multi.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.multi.dto.CustomerDTO;
+import com.multi.dto.ItemDTO;
 import com.multi.service.CustomerService;
+import com.multi.service.ItemService;
 
 @Controller
 public class MainController {
@@ -16,8 +20,26 @@ public class MainController {
 	@Autowired
 	CustomerService service;
 	
+	@Autowired
+	ItemService item_service;
+	
+//	밑에 매핑이랑 겹처서 일단 주석 해두었습니다...
+//	@RequestMapping("/")
+//	public String main() {
+//		return "main";
+//	}
+	
+//	메인페이지에 나타나는 상품 리스트
 	@RequestMapping("/")
-	public String main() {
+	public String mainproducts(Model model) {
+		List<ItemDTO> list = null; 
+		
+		try {
+			list = item_service.getall();
+			model.addAttribute("itemlist", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "main";
 	}
 	
