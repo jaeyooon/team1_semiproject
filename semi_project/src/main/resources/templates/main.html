@@ -17,7 +17,8 @@
 		margin: 20px 150px 0 150px; 
 		display: flex;
 		justify-content:center;
-		height: 500px;    /*영역 표시를 위한 것*/
+		/* border: 2px solid blue;    /*영역 표시를 위한 것*/ 
+		/* height: 500px;    /*영역 표시를 위한 것*/ 
 	}
   	div{
   		font-family: 'Roboto Mono', monospace;
@@ -61,38 +62,54 @@
       <a class="navbar-brand" href="/">Multi Music🎼</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-         <li class="active"><a href="/best">Best</a></li>
-              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">건반 <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="/cate/cate11">스타인웨이</a></li>
-                  <li><a href="/cate/cate12">삼익</a></li>
-                </ul>
-              </li>
-              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">관악기 <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="/cate/cate21">야마하</a></li>
-                  <li><a href="/cate/cate22">르블랑</a></li>
-                </ul>
-              </li>
-              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">현악기 <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="/cate/cate31">알버트웨버</a></li>
-                  <li><a href="/cate/cate32">효정</a></li>
-                </ul>
-              </li>
-              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">기타 <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="/cate/cate41">마틴</a></li>
-                  <li><a href="/cate/cate42">테일러</a></li>
-                </ul>
-              </li>
-              <li><a href="/shop">Shop</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-          <li><a href="/signup"><span class="glyphicon glyphicon-edit"></span> Sign Up</a></li>
-          <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
+       	 <ul class="nav navbar-nav">
+	         <li class="active"><a href="/best">Best</a></li>
+	              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">건반 <span class="caret"></span></a>
+	                <ul class="dropdown-menu">
+	                  <li><a href="/cate/cate11">스타인웨이</a></li>
+	                  <li><a href="/cate/cate12">삼익</a></li>
+	                </ul>
+	              </li>
+	              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">관악기 <span class="caret"></span></a>
+	                <ul class="dropdown-menu">
+	                  <li><a href="/cate/cate21">야마하</a></li>
+	                  <li><a href="/cate/cate22">르블랑</a></li>
+	                </ul>
+	              </li>
+	              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">현악기 <span class="caret"></span></a>
+	                <ul class="dropdown-menu">
+	                  <li><a href="/cate/cate31">알버트웨버</a></li>
+	                  <li><a href="/cate/cate32">효정</a></li>
+	                </ul>
+	              </li>
+	              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">기타 <span class="caret"></span></a>
+	                <ul class="dropdown-menu">
+	                  <li><a href="/cate/cate41">마틴</a></li>
+	                  <li><a href="/cate/cate42">테일러</a></li>
+	                </ul>
+	              </li>
+	              <li><a href="/shop">Shop</a></li>
+       	  </ul>
+       	  <!-- 로그인 안했을 때(session에 아무것도 없을 때) -->
+	      <ul th:if="${session.logincust == null}" class="nav navbar-nav navbar-right">
+	          <li><a href="/signup"><span class="glyphicon glyphicon-edit"></span> Sign Up</a></li>
+	          <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+	      </ul>
+	      <!-- 로그인 했을때 -->
+	      <ul th:if="${session.logincust != null}" class="nav navbar-nav navbar-right">
+	      	  
+	           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">My Page <span class="caret"></span></a>
+		        <ul class="dropdown-menu">
+		          <li><a th:href="@{/cust/custdetail(id=${session.logincust.custid})}" th:text="${session.logincust.name}+'님'">&nbsp;name</a></li>
+		          <li><a href="/cart/get">장바구니<span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+		          <li><a href="/order/get">주문</a></li>
+		          <li><a href="/good">좋아요<span class="glyphicon glyphicon-heart-empty"></span></a></li>
+		          <li><a href="/address">배송지관리</a></li>
+		        </ul>
+		      </li>
+	          	<!-- 로그아웃하면 session 정보 없앰 -->
+	          <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+	      </ul>
     </div>
   </div>
 </nav>
