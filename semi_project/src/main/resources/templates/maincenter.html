@@ -1,3 +1,16 @@
+<meta charset="utf-8">
+
+<style>
+#allproducts > a > img{
+width: 230px;
+height: 230px;
+}
+h4{
+font-weight: bold;
+}
+
+</style>
+
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 	<!-- Indicators -->
 	<ol class="carousel-indicators">
@@ -41,15 +54,14 @@
 </div>
 
 
-<div class="container text-center">
-	<h3>Products</h3>
+<div class="container text-center"><br>
+	<h2>Products</h2>
 	<br>
 	<div class="row">
-		<div th:each="it : ${itemlist}" class="col-sm-4">
-			<a><img th:src="'/img/'+${it.image}" class="img-responsive"
-				style="width: 100%" alt="Image"></a>
-			<p th:text="${it.pname}">name</p>
-			<p th:text="${it.price}">price</p>
+		<div th:each="it : ${itemlist}" id="allproducts" class="col-sm-4">
+			<a href="#"><img th:src="'/img/'+${it.image}" alt="Image"></a>
+			<h4 th:text="${it.pname}">name</h4>
+			<p th:text="${it.price}+'원'">price</p>
 			<p th:text="${it.checkstatus}">status</p>
 		</div>
 	</div>
