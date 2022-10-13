@@ -13,7 +13,11 @@ import lombok.ToString;
 @ToString
 public class DetailDTO {
 	private int detailid;
-	private int itemid;
 	private int purchaseid;
+	private int itemid;
 	private int count;
+	
+	private String pname;
+	private int price;
+	private String image;
 }
