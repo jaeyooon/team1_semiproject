@@ -15,7 +15,7 @@ public class InsertCustomer {
 	
 	@Test
 	void contextLoads() {
-		CustomerDTO cust = new CustomerDTO("id05", "pwd05", "홍말숙", "010-5789-1234", "1996-01-01", "F", "경기도 성남시 분당구", 1, "10% 쿠폰");
+		CustomerDTO cust = new CustomerDTO("id05", "pwd05", "홍말숙", "010-5789-1234", "1996-01-01", "F", "경기도 성남시 분당구");
 		try {
 			service.register(cust);
 		} catch (Exception e) {
