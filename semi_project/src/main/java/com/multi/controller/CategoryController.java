@@ -74,6 +74,7 @@ public class CategoryController {
 		return "main";
 	}
 	
+	@RequestMapping("/cate31")
 	public String cate31(Model model) {
 		List<ItemDTO> list = null;
 		try {
