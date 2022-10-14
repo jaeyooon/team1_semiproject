@@ -1,0 +1,17 @@
+<meta charset="utf-8">
+
+<h3>상품 상세</h3>
+<img th:src="'/img/'+${info.image}" height = "230px"> 
+<h4 id="itemid" th:text="'상품번호:'+${info.itemid}"></h4>
+<h4 th:text="'모델명:'+${info.pname}"></h4>
+<h4 th:text="'가격:'+${info.price}"></h4>
+<h4 th:text="'상세:'+${info.info}"></h4>
+<h4 th:text="'상태:'+${info.checkstatus}"></h4>
+<h4 th:text="'제조일자:'+${#dates.format(info.mdate, 'yyyy-MM-dd')}"></h4>
+
+
+
+
+
+
+
