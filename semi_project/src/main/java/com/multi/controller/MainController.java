@@ -14,6 +14,7 @@ import com.multi.dto.AddrDTO;
 import com.multi.dto.CustomerDTO;
 import com.multi.dto.GoodDTO;
 import com.multi.dto.ItemDTO;
+import com.multi.service.AddrService;
 import com.multi.service.CustomerService;
 import com.multi.service.GoodService;
 import com.multi.service.ItemService;
@@ -30,10 +31,13 @@ public class MainController {
 	@Autowired
 	GoodService good_service;
 	
+	@Autowired
+	AddrService addr_service;
+	
 	String dir = "addr/";
 	
 	@RequestMapping("/")
-	public String mainproducts(Model model) {
+	public String main(Model model) {
 		List<ItemDTO> list = null; 
 		
 		try {
