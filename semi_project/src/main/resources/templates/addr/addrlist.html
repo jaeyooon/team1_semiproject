@@ -1,0 +1,30 @@
+<meta charset="utf-8">
+<div class="card shadow mb-4">
+	<div class="card-header py-3">
+		<h6 class="m-0 font-weight-bold text-primary">배송지</h6>
+	</div>
+	<div class="card-body">
+		<div class="table-responsive">
+			<table class="table table-bordered" id="dataTable" width="100%"
+				cellspacing="0">
+				<thead>
+					<tr>
+						<th>배송지명</th>
+						<th>배송지</th>
+						<th>수령인</th>
+						<th>연락처</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:each="list : ${list}">
+						<td th:text="${list.addrname}">배송지</td>
+						<td th:text="${list.address}">주소</td>
+						<td th:text="${list.receiver}">받는 사람</td>
+						<td th:text="${list.tel}">연락처</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.multi.dto.GoodDTO;
 import com.multi.dto.PurchaseDTO;
 import com.multi.service.PurchaseService;
 
@@ -14,18 +15,17 @@ public class getAllPurchase {
 
 	@Autowired
 	PurchaseService service;
-
+	
 	@Test
 	void contextLoads() {
 		List<PurchaseDTO> list = null;
-		
 		try {
-			list = service.getall();
+			list = service.getallpurchase("id01");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		for (PurchaseDTO p : list) {
+		for(PurchaseDTO p:list) {
 			System.out.println(p);
 		}
 	}
