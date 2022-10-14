@@ -22,7 +22,7 @@
 		<tbody>
 			<tr th:each="it : ${itemlist}">
 				<td>
-					<a th:href="@{/info(id=${it.itemid})}">
+					<a th:href="@{/iteminfo(id=${it.itemid})}">
 						<img th:src="'/img/'+${it.image}" height = "230px">
 					</a>
 				</td>
