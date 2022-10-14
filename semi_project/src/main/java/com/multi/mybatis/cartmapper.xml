@@ -12,7 +12,12 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		WHERE ca.cartid = #{cartid}
 	</select>
 	<select id="selectall" resultType="CartDTO">
-		SELECT * FROM cart
+	</select>
+	<select id="cartall" parameterType="String" resultType="CartDTO">
+		SELECT ca.cartid, it.image as item_image, it.pname as item_name, ca.cnt, it.price as item_price FROM cart ca
+		INNER JOIN customer cu ON ca.custid = cu.custid
+		INNER JOIN item it ON ca.itemid = it.itemid
+		WHERE ca.custid = #{custid}
 	</select>
 	<insert id="insert" parameterType="CartDTO">
 		INSERT INTO cart VALUES (NULL, #{custid}, #{itemid}, #{cnt}, #{total})
@@ -25,7 +30,6 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</delete>
 		
 </mapper>
-
 
 
 

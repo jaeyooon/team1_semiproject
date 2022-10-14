@@ -1,9 +1,17 @@
 <meta charset="utf-8">
-<div class="card shadow mb-4">
-	<div class="card-header py-3">
-		<h6 class="m-0 font-weight-bold text-primary">배송지</h6>
-	</div>
-	<div class="card-body">
+
+<style>
+#cartlist {
+	justify-content: flex-start;
+	display: flex;
+}
+</style>
+
+<div class="content" id="cartlist">
+
+	<div class="container">
+		<h2>Address Lists</h2>
+
 		<div class="table-responsive">
 			<table class="table table-bordered" id="dataTable" width="100%"
 				cellspacing="0">
@@ -24,6 +32,16 @@
 						<td th:text="${list.tel}">연락처</td>
 					</tr>
 				</tbody>
+				<!-- 	<tbody>
+					<tr th:each="obj:${list}">
+						<td><img th:src="'/img/'+${obj.imgname}"></td>
+						<td><a th:href="@{/item/detail(id=${obj.id})}"
+							th:text="${obj.id}"></a></td>
+						<td th:text="${obj.name}"></td>
+						<td th:text="${obj.price}"></td>
+						<td th:text="${#dates.format(obj.rdate, 'yyyy-MM-dd')}"></td>
+					</tr>
+				</tbody> -->
 			</table>
 		</div>
 	</div>

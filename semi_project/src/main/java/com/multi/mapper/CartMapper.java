@@ -12,5 +12,5 @@ import com.multi.frame.myMapper;
 @Repository
 @Mapper
 public interface CartMapper extends myMapper<Integer, CartDTO> {
-	public List<CartDTO> cartall(Integer cartid) throws Exception;
+	public List<CartDTO> cartall(String custtid) throws Exception;
 }

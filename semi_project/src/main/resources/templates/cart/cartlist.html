@@ -1,0 +1,39 @@
+<meta charset="utf-8">
+<style>
+#cartlist {
+	justify-content: flex-start;
+	display: flex;
+}
+
+img {
+	width: 200px;
+	height: 200px;
+}
+</style>
+
+<div class="content" id="cartlist">
+	<div class="container">
+		<h2>Cart Lists</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>No</th>
+					<th>Image</th>
+					<th>Item Name</th>
+					<th>Count</th>
+					<th>Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="ca : ${cartlist}">
+					<td th:text="${ca.cartid}">NO</td>
+					<td><a> <img th:src="'/img/' + ${ca.item_image}">
+					</a></td>
+					<td th:text="${ca.item_name}">Name</td>
+					<td th:text="${ca.cnt}">Count</td>
+					<td th:text="${ca.item_price}">Price</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
