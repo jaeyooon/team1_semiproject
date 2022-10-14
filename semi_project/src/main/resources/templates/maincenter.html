@@ -29,14 +29,14 @@ font-weight: bold;
 		</div>
 
 		<div class="item">
-			<img src="#" alt="Image">
+			<img src="/img/main2.jpeg" alt="Image">
 			<div class="carousel-caption">
 				<h3>Yamaha</h3>
 			</div>
 		</div>
 
 		<div class="item">
-			<img src="#" alt="Image">
+			<img src="/img/main3.jpeg" alt="Image">
 			<div class="carousel-caption">
 				<h3>STEINWAY & SONS</h3>
 			</div>
@@ -59,7 +59,7 @@ font-weight: bold;
 	<br>
 	<div class="row">
 		<div th:each="it : ${itemlist}" id="allproducts" class="col-sm-4">
-			<a href="#"><img th:src="'/img/'+${it.image}" alt="Image"></a>
+			<a th:href="@{/info(itemid=${it.itemid})}"><img th:src="'/img/'+${it.image}" alt="Image"></a>
 			<h4 th:text="${it.pname}">name</h4>
 			<p th:text="${it.price}+'원'">price</p>
 			<p th:text="${it.checkstatus}">status</p>
