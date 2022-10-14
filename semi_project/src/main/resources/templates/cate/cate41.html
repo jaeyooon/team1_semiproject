@@ -1,35 +1,27 @@
 <meta charset="utf-8">
-<style>
-#cate41{
-	justify-content: flex-start; 
-	display: flex; 
-	}	
+<style> 
+#itemlist > a > img{
+	width: 320px;
+	height: 320px;
+	border: 1px solid #e0e1dd;
+}
+h4{
+	font-weight: bold;
+}
 </style>
 
-<div class="container" id="cate41">
+
+<div class="content">
+<div class="container text-center"><br>
 	<h2>마틴</h2>
-	<!-- 여기서부터 코딩해주세요 -->
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Image</th>
-				<th>No</th>
-				<th>Name</th>
-				<th>Price</th>
-				<th>Checkstatus</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="it : ${itemlist}">
-				<td>
-					<a th:href="@{/info(itemid=${it.itemid})}">
-						<img th:src="'/img/'+${it.image}" height = "230px">
-					</a>
-				</td>
-				<td th:text="${it.itemid}">no</td>
-				<td th:text="${it.pname}">name</td>
-				<td th:text="${it.price}">price</td>
-				<td th:text="${it.checkstatus}">status</td>
-		</tbody>
-	</table>
+	<br>
+	<div class="row">
+		<div th:each="it : ${itemlist}" id="itemlist" class="col-sm-6">
+			<a th:href="@{/info(itemid=${it.itemid})}"><img th:src="'/img/'+${it.image}" alt="Image"></a>
+			<h4 th:text="${it.pname}">name</h4>
+			<p th:text="${it.price}+'원'">price</p>
+			<p th:text="${it.checkstatus}">status</p>
+		</div>
+	</div>
+</div>
 </div>

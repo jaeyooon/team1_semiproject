@@ -1,13 +1,16 @@
 <meta charset="utf-8">
 
 <style>
-#allproducts > a > img{
+#allproducts  > a > img{
 width: 230px;
 height: 230px;
+border: solid 1px #edede9;
 }
+
 h4{
 font-weight: bold;
 }
+
 
 </style>
 
@@ -38,7 +41,7 @@ font-weight: bold;
 		<div class="item">
 			<img src="/img/main3.jpeg" alt="Image">
 			<div class="carousel-caption">
-				<h3>STEINWAY & SONS</h3>
+				<h3>Taylor</h3>
 			</div>
 		</div>
 	</div>
@@ -58,7 +61,7 @@ font-weight: bold;
 	<h2>Products</h2>
 	<br>
 	<div class="row">
-		<div th:each="it : ${itemlist}" id="allproducts" class="col-sm-4">
+		<div th:each="it : ${itemlist}" id="allproducts" class="col-sm-3">
 			<a th:href="@{/info(itemid=${it.itemid})}"><img th:src="'/img/'+${it.image}" alt="Image"></a>
 			<h4 th:text="${it.pname}">name</h4>
 			<p th:text="${it.price}+'원'">price</p>
@@ -66,7 +69,7 @@ font-weight: bold;
 		</div>
 	</div>
 </div>
-<br>
+
 
 <footer class="container-fluid text-center">
 	<p>Footer Text</p>

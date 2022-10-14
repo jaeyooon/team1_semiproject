@@ -1,17 +1,108 @@
 <meta charset="utf-8">
+<style>
+#iteminfo{
+	justify-content: flex-start; 
+	display: flex; 
+	flex-direction: column;
+	}
+#info > img{
+	width: 300px;
+	height: 300px;
+}
+#btn{
+	/* border: 2px solid red; */
+	margin: 380px 0 0 50px;
+}
+h3{
+	font-weight: bold; 
+}
+</style>
+<script>
+function like(custid){
+	location.href='/good?id='+custid;
+}
 
-<h3>상품 상세</h3>
-<img th:src="'/img/'+${info.image}" height = "230px"> 
-<h4 id="itemid" th:text="'상품번호:'+${info.itemid}"></h4>
-<h4 th:text="'모델명:'+${info.pname}"></h4>
-<h4 th:text="'가격:'+${info.price}"></h4>
-<h4 th:text="'상세:'+${info.info}"></h4>
-<h4 th:text="'상태:'+${info.checkstatus}"></h4>
-<h4 th:text="'제조일자:'+${#dates.format(info.mdate, 'yyyy-MM-dd')}"></h4>
+$(document).ready(function(){
+	$('#up_btn').click(function(){
+		var num = $('#num').val();
+		var result = Number(num) + 1;
+		$('#num').val(result);
+	});
+	$('#down_btn').click(function(){
+		var num = $('#num').val();
+		if(num == '0'){
+			return;
+		}
+		var result = Number(num) - 1;
+		$('#num').val(result);
+	});
+	$('#cart_btn').click(function(){
+		var itemid = $('#itemid').text();
+		var cnt = $('#num').val();
+		var custid = '[[${session.logincust.custid}]]';
+		if(cnt == '0'){
+			alert('수량을 입력 하세요');
+			return;
+		}
+
+		$('#myModal').modal();
+	});
+	
+});
+</script>
+
+<div class="content">
+	<div class="row">
+			<div class="col-sm-7" id="info">
+			<h3>상품 상세</h3><br>
+				<img th:src="'/img/'+${info.image}"> 
+				<h4 id="itemid" th:text="'상품번호:'+${info.itemid}"></h4>
+				<h4 th:text="'모델명:'+${info.pname}"></h4>
+				<h4 th:text="'가격:'+${info.price}"></h4>
+				<h4 th:text="'상세:'+${info.info}"></h4>
+				<h4 th:text="'상태:'+${info.checkstatus}"></h4>
+				<h4 th:text="'제조일자:'+${#dates.format(info.mdate, 'yyyy-MM-dd')}"></h4>
+			</div>
+			<div class= "container col-sm-3" id="btn" th:if= "${session.logincust != null}">
+				 <input type="number" value="0" class="form-control container" id="num" readonly="readonly">
+				 <div class="btn-group">
+						<button type="button" class="btn btn-default btn-sm" id="up_btn">
+					          <span class="glyphicon glyphicon-arrow-up"></span> Up
+					     </button>
+					     
+					     <button type="button" class="btn btn-default btn-sm" id="down_btn">
+					          <span class="glyphicon glyphicon-arrow-down"></span> Down
+					     </button>
+			     </div>
+			     <button type="button" class="btn btn-default btn-sm" id="cart_btn">
+			         <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
+			     </button>
+			     <button th:onclick="like([[${session.logincust.custid}]])" type="button" class="btn btn-default btn-sm" id="like_btn">
+			         <span class="glyphicon glyphicon-heart"></span> like
+			     </button>
+			</div>
+	</div>
+</div>
 
 
 
-
-
-
-
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">카트에 담았습니다.</h4>
+        </div>
+        <div class="modal-body">
+          <p><a th:href="@{/cart/get}">쇼핑 카트로 이동하시겠습니까 ?</a></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
