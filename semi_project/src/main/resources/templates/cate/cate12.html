@@ -4,12 +4,6 @@
 	justify-content: flex-start; 
 	display: flex; 
 	}	
-	table > tbody > tr > td > img {
-		width:100px;
-	} 
-	table > tbody > tr > td > img:hover {
-		width:100px;
-	} 
 </style>
 
 <div class="container" id="cate12">
@@ -29,7 +23,7 @@
 			<tr th:each="it : ${itemlist}">
 				<td>
 					<a th:href="@{/info(id=${it.itemid})}">
-						<img th:src="'/img/'+${it.image}">
+						<img th:src="'/img/'+${it.image}" height = "230px">
 					</a>
 				</td>
 				<td th:text="${it.itemid}">no</td>
