@@ -1,0 +1,56 @@
+
+<meta charset="utf-8">
+<style>
+.container{
+display: flex;
+flex-direction: column;
+justify-content: center; 
+align-items: center;
+}
+</style>
+<script>
+$(document).ready(function(){
+	$('#register_btn').click(function(){
+		$('#review_form').attr({
+			'enctype':'multipart/form-data', 
+			'action':'/review/reviewimpl',
+			'method':'post'
+		});
+		$('#review_form').submit();
+	});
+	
+});
+
+</script>
+
+<div class="content" id="newreview">
+	<div class="container">
+	<div class="col-sm-6">
+	  <h2>리뷰쓰기</h2><br>
+	  <form id="review_form">
+	  	<div class="form-group">
+	      <label for="custid">회원ID:</label>
+	      <input type="text" readonly="readonly" class="form-control" th:value="${session.logincust.custid}" id="custid"  name="custid">
+	    </div>
+	    <div class="form-group">
+	      <label for="itemid">상품번호:</label>
+	      <input type="number" class="form-control" id="itemid"  name="itemid">
+	    </div>
+	    <div class="form-group">
+	      <label for="rate">별점:</label>
+	      <input type="number" class="form-control" id="rate" placeholder="Enter rate" name="rate">
+	    </div>
+	     <div class="form-group">
+	      <label for="pwd2">리뷰작성하기:</label>
+	      <textarea class="form-control" rows="5" id="comment" name="content"></textarea>
+	    </div>
+	 	<div class="form-group">
+		      <label for="newimg">이미지첨부:</label> <!-- 파일 전송할 때 input 타입 file -->
+		      <input type="file" class="form-control" id="newimg" name="newimg">
+		</div>
+	  </form>
+	  <button id="register_btn" class="btn btn-default">REGISTER</button>
+	</div>
+	</div>
+	
+</div>

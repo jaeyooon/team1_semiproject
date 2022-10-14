@@ -16,7 +16,7 @@ public class UpdateReview {
 	
 	@Test
 	void contextLoads() {
-		ReviewDTO review = new ReviewDTO(10,"id01", 100, "최고에요👍",null, 5);
+		ReviewDTO review = new ReviewDTO(10,"id01", 100, "최고에요👍",null, 5, null);
 		try {
 			service.modify(review);
 			System.out.println("OK");

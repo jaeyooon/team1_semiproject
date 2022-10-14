@@ -1,0 +1,56 @@
+<meta charset="utf-8">
+<style>
+	#orderdetail{
+		justify-content: flex-start; 
+		display: flex; 
+	}
+	table > tbody > tr > td > a >img {
+		width: 140px;
+	}
+	
+	.table { 
+	width: 100%; 
+	}
+</style>
+<script>
+function rev(custid){
+	var c = confirm('리뷰를 작성하시겠습니까?')
+		if(c == true){
+			location.href='/review/register?id='+custid;
+		}
+}
+	
+</script>
+<div class="content" id="orderdetail">
+	<div class="container">
+	  <h2>주문내역</h2><br>
+		  <table class="table">
+		    <thead>
+		      <tr>
+		        <th>주문상세번호</th>
+		        <th>상품 이미지</th>
+		        <th>상품 이름</th>
+		        <th>상품 수량</th>
+		        <th>주문 금액</th>
+		        <th></th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr th:each="d:${list}">
+		        <td th:text="${d.detailid}">detailid</td>
+		        <td><a href="#"><img th:src="'/img/' + ${d.item_image}"></td>
+		        <td th:text="${d.item_name}">item_name</td>
+		        <td th:text="${d.count}">count</td>
+		        <td th:text="${d.p_totalprice}+'원'"></td>
+		        <td>
+		        	<div class="btn-group-vertical">
+					  <button th:onclick="rev([[${session.logincust.custid}]])" type="button" class="btn btn-default">리뷰쓰기</button>
+					  <button type="button" class="btn btn-default">주문내역삭제</button>
+					</div>
+		        </td>
+		      </tr>
+		    </tbody>
+		  </table>
+	</div>
+	
+</div>
