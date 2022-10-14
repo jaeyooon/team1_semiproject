@@ -6,22 +6,28 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <mapper namespace="com.multi.mapper.PurchaseMapper">
 
 	<select id="select" parameterType="Integer" resultType="PurchaseDTO">
-		SELECT pu.purchaseid, pu.name, pu.receiver, pu.address, pu.number, pu.pay, pu.totalprice
-		FROM purchase pu
-		INNER JOIN customer cu ON pu.custid = cu.custid
-		WHERE pu.purchaseid = #{purchaseid}
+		SELECT * FROM purchase WHERE purchaseid=#{purchaseid};
 	</select>
+	
 	<select id="selectall" resultType="PurchaseDTO">
-		SELECT * FROM purchase 
+		
 	</select>
 	<insert id="insert" parameterType="PurchaseDTO">
-		INSERT INTO purchase VALUES (NULL, #{custid}, #{name}, #{receiver}, #{address}, #{number}, #{pay}, NULL)
+		INSERT INTO purchase VALUES (NULL, #{custid}, #{name}, #{receiver}, #{address}, #{number}, #{pay}, #{totalprice})
+		<selectKey keyProperty="purchaseid" resultType="Integer" order="AFTER"> 
+                SELECT LAST_INSERT_ID()
+        </selectKey> 
 	</insert>
 	<update id="update" parameterType="PurchaseDTO">
-		UPDATE purchase custid = #{custid} WHERE purchaseid = #{purchaseid}
+		
 	</update>
 	<delete id="delete" parameterType="Integer">
-		DELETE FROM purchase WHERE purchaseid=#{purchaseid}
+		
 	</delete>
+	
+	<select id="getallpurchase" parameterType="String" resultType="PurchaseDTO">
+		SELECT * FROM purchase WHERE custid=#{custid};
+	</select>
 
+	
 </mapper>

@@ -6,22 +6,32 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <mapper namespace="com.multi.mapper.DetailMapper">
 
 	<select id="select" parameterType="Integer" resultType="DetailDTO">
-		SELECT de.detailid, it.itemid, pu,purchaseid, de.count FROM detail de
-		INNER JOIN item it ON it.itemid = de.itemid
-		INNER JOIN purchase pu ON pu.purchaseid = de.purchaseid
-		WHERE de.detailid = #{detailid}
+		
 	</select>
 	<select id="selectall" resultType="DetailDTO">
-		SELECT * FROM detail
+		SELECT d.detailid, d.itemid, p.custid AS cust_id, p.purchaseid, i.image AS item_image, 
+		i.pname AS item_name, p.totalprice AS p_totalprice, 
+		i.price AS item_price, d.count FROM detail d
+		INNER JOIN item i ON d.itemid = i.itemid
+		INNER JOIN purchase p ON d.purchaseid = p.purchaseid
 	</select>
 	<insert id="insert" parameterType="DetailDTO">
-		INSERT INTO detail VALUES (#{detailid}, #{itemid}, #{purchaseid}, #{count})
+		INSERT INTO detail VALUES (NULL, #{itemid}, #{purchaseid}, #{count})
 	</insert>
 	<update id="update" parameterType="DetailDTO">
-		UPDATE detail itemid = #{itemid}, purchaseid = #{purchaseid}  WHERE detailid = #{detailid}
+		
 	</update>
 	<delete id="delete" parameterType="Integer">
 		DELETE FROM detail WHERE detailid = #{detailid}
 	</delete>
+	
+	<select id="getorderdetail" parameterType="String" resultType="DetailDTO">
+		SELECT d.detailid, d.itemid, p.custid AS cust_id, p.purchaseid, i.image AS item_image, 
+		i.pname AS item_name, p.totalprice AS p_totalprice, 
+		i.price AS item_price, d.count FROM detail d
+		INNER JOIN item i ON d.itemid = i.itemid
+		INNER JOIN purchase p ON d.purchaseid = p.purchaseid
+		WHERE p.custid=#{custid}
+	</select>
 
 </mapper>

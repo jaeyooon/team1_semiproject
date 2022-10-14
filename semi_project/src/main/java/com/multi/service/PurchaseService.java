@@ -37,7 +37,11 @@ public class PurchaseService implements myService<Integer, PurchaseDTO>{
 
 	@Override
 	public List<PurchaseDTO> getall() throws Exception {
-		return mapper.selectall();
+		return null;
+	}
+	
+	public List<PurchaseDTO> getallpurchase(String custid) throws Exception{
+		return mapper.getallpurchase(custid);
 	}
 
 }

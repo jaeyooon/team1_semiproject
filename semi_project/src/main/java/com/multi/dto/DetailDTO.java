@@ -17,7 +17,8 @@ public class DetailDTO {
 	private int itemid;
 	private int count;
 	
-	private String pname;
-	private int price;
-	private String image;
+	private String item_name;
+	private String item_image;
+	
+	private int p_totalprice;
 }

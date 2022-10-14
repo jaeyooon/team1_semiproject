@@ -40,6 +40,9 @@ public class DetailService implements myService<Integer, DetailDTO>{
 		return mapper.selectall();
 	}
 	
+	public List<DetailDTO> getorderdetail(String custid) throws Exception{
+		return mapper.getorderdetail(custid);
+	}
 	
 
 }
