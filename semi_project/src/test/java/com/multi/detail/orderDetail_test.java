@@ -25,7 +25,7 @@ public class orderDetail_test {
 			service.register(purchase);
 			int r = purchase.getPurchaseid();
 			System.out.println("Register OK" + r);
-			DetailDTO detail = new DetailDTO(0, r, 0 , 5, "피아노", 50000, "MT-170.jpg");
+			DetailDTO detail = new DetailDTO(0, r, 0 , 5, "피아노", "MT-170.jpg", 50000);
 			service1.register(detail);
 		} catch (Exception e) {
 			e.printStackTrace();
