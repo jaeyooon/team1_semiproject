@@ -123,6 +123,19 @@ public class MainController {
 			e.printStackTrace();
 		}
 		return "main";
-		
+	}
+	
+	@RequestMapping("/signupimpl")
+	public String signupimpl(Model model, CustomerDTO cust, HttpSession session) {
+		try {
+			service.register(cust);
+			session.setAttribute("logincust", cust);
+			model.addAttribute("center", "signupok");
+			model.addAttribute("rightsign", cust);
+		} catch (Exception e) {
+			model.addAttribute("center", "signupfail");
+			model.addAttribute("failsign", cust.getCustid());
+		}
+		return "main";
 	}
 }
