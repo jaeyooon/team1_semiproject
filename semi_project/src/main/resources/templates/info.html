@@ -1,25 +1,28 @@
 <meta charset="utf-8">
 <style>
 #iteminfo{
-	justify-content: flex-start; 
-	display: flex; 
 	flex-direction: column;
 	}
-#info > img{
-	width: 300px;
-	height: 300px;
+#c_section1 > img{
+	width: 400px;
+	height: 440px;
+	margin: 20px 0 10px 60px;
+	border: 1px solid #edede9; 
 }
-#btn{
-	/* border: 2px solid red; */
-	margin: 380px 0 0 50px;
+#c_section2{
+	margin: 170px 0 0 150px;
 }
-h3{
-	font-weight: bold; 
+#r_section1{
+	margin: 50px 0 10px 50px;
+}
+h4{
+	font-weight: bold;
 }
 </style>
 <script>
 function like(custid){
-	location.href='/good?id='+custid;
+	var i = itemid;
+	location.href='/goodinsert';
 }
 
 $(document).ready(function(){
@@ -51,38 +54,85 @@ $(document).ready(function(){
 });
 </script>
 
-<div class="content">
+<div class="content" id="iteminfo">
+	
 	<div class="row">
-			<div class="col-sm-7" id="info">
-			<h3>상품 상세</h3><br>
+			<div class="col-sm-5" id="c_section1">
+			
 				<img th:src="'/img/'+${info.image}"> 
-				<h4 id="itemid" th:text="'상품번호:'+${info.itemid}"></h4>
-				<h4 th:text="'모델명:'+${info.pname}"></h4>
-				<h4 th:text="'가격:'+${info.price}"></h4>
-				<h4 th:text="'상세:'+${info.info}"></h4>
-				<h4 th:text="'상태:'+${info.checkstatus}"></h4>
-				<h4 th:text="'제조일자:'+${#dates.format(info.mdate, 'yyyy-MM-dd')}"></h4>
+				
 			</div>
-			<div class= "container col-sm-3" id="btn" th:if= "${session.logincust != null}">
-				 <input type="number" value="0" class="form-control container" id="num" readonly="readonly">
-				 <div class="btn-group">
-						<button type="button" class="btn btn-default btn-sm" id="up_btn">
-					          <span class="glyphicon glyphicon-arrow-up"></span> Up
-					     </button>
-					     
-					     <button type="button" class="btn btn-default btn-sm" id="down_btn">
-					          <span class="glyphicon glyphicon-arrow-down"></span> Down
-					     </button>
-			     </div>
-			     <button type="button" class="btn btn-default btn-sm" id="cart_btn">
-			         <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
-			     </button>
-			     <button th:onclick="like([[${session.logincust.custid}]])" type="button" class="btn btn-default btn-sm" id="like_btn">
-			         <span class="glyphicon glyphicon-heart"></span> like
-			     </button>
+			<div  class="col-sm-5" id="c_section2" th:if= "${session.logincust != null}">
+				<h4 th:text="${info.pname}"></h4>
+				<h4 th:text="${info.price}+'원'"></h4><br>
+				<div class="col-sm-5">
+					 <input type="number" value="0" class="form-control container" id="num" readonly="readonly">
+					 <div class="btn-group">
+							<button type="button" class="btn btn-default btn-sm" id="up_btn">
+						          <span class="glyphicon glyphicon-arrow-up"></span> Up
+						     </button>
+						     
+						     <button type="button" class="btn btn-default btn-sm" id="down_btn">
+						          <span class="glyphicon glyphicon-arrow-down"></span> Down
+						     </button>
+				     </div>
+				      <button type="button" class="btn btn-default btn-sm" id="cart_btn">
+				         <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
+				     </button>
+				     <button th:onclick="like([[${session.logincust.custid}]])" type="button" class="btn btn-default btn-sm" id="like_btn">
+				         <span class="glyphicon glyphicon-heart"></span> like
+				     </button>
+				     <button type="button" class="btn btn-info btn-sm" id="order_btn">
+				          Order
+				     </button>
+				</div>
+			     
 			</div>
 	</div>
-</div>
+	
+	<div class="container col-sm-11" id="r_section1">
+		<h3>상세 정보</h3>
+		<table class="table">
+		    <thead>
+		      <tr class="active">
+		        <th>상품번호</th>
+		        <th>상품상태</th>
+		        <th>상세정보</th>
+		        <th>제조일자</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr>
+		        <td th:text="${info.itemid}"></td>
+		        <td th:text="${info.checkstatus}"></td>
+		        <td th:text="${info.info}"></td>
+		        <td th:text="${#dates.format(info.mdate, 'yyyy-MM-dd')}"></td>
+		      </tr>
+		    </tbody>
+  		</table>
+	</div>
+	
+	<!-- dynamic tabs -->
+	<br>
+	<div class="container col-sm-11">
+	
+	  <ul class="nav nav-tabs">
+	    <li class="active"><a data-toggle="tab" href="#review">리뷰</a></li>
+	    <li><a data-toggle="tab" href="#qna">Q&A</a></li>
+	  </ul>
+	
+	  <div class="tab-content">
+	    <div id="review" class="tab-pane fade in active">
+	      <h3>상품 리뷰</h3>
+	      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+	    </div>
+	    <div id="qna" class="tab-pane fade">
+	      <h3>Q&A</h3>
+	      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+	    </div>
+	  </div>
+	</div>
+	</div>
 
 
 
