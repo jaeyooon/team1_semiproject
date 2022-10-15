@@ -40,6 +40,8 @@ public class ReviewService implements myService<Integer, ReviewDTO>{
 		return mapper.selectall();
 	}
 	
-	
+	public List<ReviewDTO> getitemreview(int itemid) throws Exception{
+		return mapper.getitemreview(itemid);
+	}
 
 }
