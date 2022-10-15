@@ -22,4 +22,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="selectcate" parameterType="int" resultType="ItemDTO">
 		SELECT * FROM item WHERE cateid=#{cateid}
 	</select>
+	<select id="selectbest" parameterType="int" resultType="ItemDTO">
+		SELECT * FROM item WHERE price > #{price}
+	</select>
 </mapper>

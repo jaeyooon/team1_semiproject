@@ -51,6 +51,13 @@ public class MainController {
 	
 	@RequestMapping("/best")
 	public String best(Model model) {
+		List<ItemDTO> list = null;
+		try {
+			list= item_service.selectbest(2000000);
+			model.addAttribute("itemlist",list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		model.addAttribute("center", "best");
 		return "main";
 	}

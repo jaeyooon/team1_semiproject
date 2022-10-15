@@ -12,4 +12,5 @@ import com.multi.frame.myMapper;
 @Mapper
 public interface ItemMapper extends myMapper<Integer, ItemDTO>{
 	public List<ItemDTO> selectcate(int cateid) throws Exception;
+	public List<ItemDTO> selectbest(int price) throws Exception;
 }
