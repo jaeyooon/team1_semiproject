@@ -39,5 +39,9 @@ public class AddrService implements myService<Integer, AddrDTO> {
 	public List<AddrDTO> getall() throws Exception {
 		return mapper.selectall();
 	}
+	
+	public List<AddrDTO> myaddr(String custid) throws Exception {
+		return mapper.myaddr(custid);
+	}
 }
 	

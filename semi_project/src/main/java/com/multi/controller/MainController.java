@@ -112,11 +112,11 @@ public class MainController {
 	}
 	
 	@RequestMapping("/address")
-	public String addr(Model model) {
+	public String address(Model model, String id) {
 		List<AddrDTO> list = null;
 		
 		try {
-			list = addr_service.getall();
+			list = addr_service.myaddr(id);
 			model.addAttribute("list", list);
 			model.addAttribute("center", dir+"addrlist");
 		} catch (Exception e) {
