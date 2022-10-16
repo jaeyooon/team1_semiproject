@@ -118,20 +118,6 @@ public class MainController {
 		return "main";
 	}
 	
-	@RequestMapping("/address")
-	public String address(Model model, String id) {
-		List<AddrDTO> list = null;
-		
-		try {
-			list = addr_service.myaddr(id);
-			model.addAttribute("list", list);
-			model.addAttribute("center", dir+"addrlist");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "main";
-	}
-	
 	@RequestMapping("/signupimpl")
 	public String signupimpl(Model model, CustomerDTO cust, HttpSession session) {
 		try {

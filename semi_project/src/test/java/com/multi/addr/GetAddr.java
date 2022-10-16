@@ -10,6 +10,7 @@ import com.multi.service.AddrService;
 @SpringBootTest
 public class GetAddr {
 
+	
 	@Autowired
 	AddrService service;
 	

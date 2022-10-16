@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM addr
 	</select>
 	<select id="myaddr" parameterType="String" resultType="AddrDTO">
-		select addrname, receiver, address, tel from addr
+		select addrid, addrname, receiver, address, tel from addr
 		where custid = #{custid};
 	</select>
 	<insert id="insert" parameterType="AddrDTO">
