@@ -35,6 +35,15 @@ public class OrderController {
 		return "main";
 	}
 	
+	@RequestMapping("/delete")
+	public String delete(Model model, String custid, int detailid) {
+		try {
+			detail_service.remove(detailid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:get?id="+custid;
+	}
 	
 	
 }

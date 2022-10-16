@@ -19,6 +19,14 @@ function rev(custid){
 			location.href='/review/register?id='+custid;
 		}
 }
+
+function del(detailid){
+	var custid = '[[${session.logincust.custid}]]'; 
+	var c = confirm('해당상품의 주문내역을 삭제하시겠습니까?')
+	if(c == true){
+		location.href='/order/delete?custid='+custid+'&detailid='+detailid; 
+	}
+}
 	
 </script>
 <div class="content" id="orderdetail">
@@ -45,7 +53,7 @@ function rev(custid){
 		        <td>
 		        	<div class="btn-group-vertical">
 					  <button th:onclick="rev([[${session.logincust.custid}]])" type="button" class="btn btn-default">리뷰쓰기</button>
-					  <button type="button" class="btn btn-default">주문내역삭제</button>
+					  <button th:onclick="del([[${d.detailid}]]);" type="button" class="btn btn-default">주문내역삭제</button>
 					</div>
 		        </td>
 		      </tr>
