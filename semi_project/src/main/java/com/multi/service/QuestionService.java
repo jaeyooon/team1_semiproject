@@ -40,6 +40,8 @@ public class QuestionService implements myService<Integer, QuestionDTO>{
 		return mapper.selectall();
 	}
 	
-	
+	public List<QuestionDTO> getitemquestion(int itemid) throws Exception{
+		return mapper.getitemquestion(itemid);
+	}
 
 }

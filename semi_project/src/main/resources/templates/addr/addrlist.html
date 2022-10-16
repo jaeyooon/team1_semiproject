@@ -8,11 +8,19 @@
 </style>
 
 <script>
+function register(addrid){
+	location.href='/address/register?id='+addrid;
+}
 
-function del(id){
+function update(addrid){
+	location.href='/address/update?id='+addrid;
+}
+
+function del(addrid){
+	var custid = '[[${session.logincust.custid}]]'; 
 	var c = confirm('삭제 하시겠습니까 ?');
 	if(c == true){
-		location.href='/address/delete?id='+id;
+		location.href='/address/delete?custid='+custid+'&id='+addrid;
 	}
 };
 
@@ -44,7 +52,7 @@ function del(id){
 						<td th:text="${list.tel}">연락처</td>
 						<td>
 							<div class="btn-group-vertical">
-							   <button type="button" class="btn btn-default">수정</button>
+							   <button th:onclick="update([[${list.addrid}]]);" type="button" class="btn btn-default">수정</button>
 							   <button th:onclick="del([[${list.addrid}]]);" type="button" class="btn btn-default">삭제</button>
 							</div>
 						</td>
@@ -52,6 +60,6 @@ function del(id){
 				</tbody>
 			</table>
 		</div>
-		<a href="/addr/addrupdate">배송지 등록</a>
+		<h4><a th:href="@{/address/register}">배송지 등록</a></h4>
 	</div>
 </div>

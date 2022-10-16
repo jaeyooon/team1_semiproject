@@ -33,21 +33,58 @@ public class AddressController {
 		return "main";
 	}
 	
-//	@RequestMapping("update")
-//	public String update(Model model) {
-//		model.addAttribute("center", dir + "addrupdate");
-//
-//		return "main";
-//	}
+	@RequestMapping("/updateimpl")
+	public String updateimpl(Model model, AddrDTO addr) {
+		try {
+			addr_service.modify(addr);
+			System.out.println(addr);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:?id="+addr.getCustid();
+	}
+	
+	@RequestMapping("/update")
+	public String update(Model model, int id) {
+		AddrDTO addr = null;
+		try {
+			addr = addr_service.get(id);
+			model.addAttribute("forupdate", addr);
+			model.addAttribute("center", dir + "addrupdate");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "main";
+	}
 
 	@RequestMapping("/delete")
-	public String delete(int id, Model model) {
+	public String delete(Model model, String custid, int id) {
 		try {
 			addr_service.remove(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/address";
+		return "redirect:/address?id="+custid;
 
 	}
+	
+	@RequestMapping("/register")
+	public String register(Model model) {
+		model.addAttribute("center", dir+"registeraddr");
+		return "main";
+
+	}
+	
+	@RequestMapping("/registerimpl")
+	public String registerimpl(Model model, AddrDTO addr) {
+		try {
+			addr_service.register(addr);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:?id="+addr.getCustid();
+
+	}
+	
+
 }

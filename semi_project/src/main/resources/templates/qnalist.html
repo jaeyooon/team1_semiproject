@@ -1,0 +1,40 @@
+<meta charset="utf-8">
+<style>
+	table > tbody > tr > td > img {
+		width: 140px;
+	}
+	
+	
+	.table table-striped{ 
+	width: 80%; 
+	}
+
+</style>
+
+<div class="content">
+<div class="container">
+<h2>Q&A</h2><br>
+	  <table class="table table-striped">
+	    <thead>
+	      <tr>
+	        <th>No</th>
+	        <th>Itemid</th>
+	        <th>Custid</th>
+	        <th>Content</th>
+	        <th>Status</th>
+	        <th>Date</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr th:each="q:${list}">
+	        <td th:text="${q.questionid}">questionid</td>
+	        <td th:text="${q.itemid}">itemid</td>
+	        <td th:text="${q.custid}">custid</td>
+	        <td th:text="${q.qcontent}">qcontent</td>
+	        <td th:text="${q.astatus}">astatus</td>
+	        <td th:text="${q.qdate}">qdate</td>
+	      </tr>
+	    </tbody>
+	  </table>
+</div>
+</div>

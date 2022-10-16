@@ -1,12 +1,15 @@
 package com.multi.controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.multi.dto.GoodDTO;
 import com.multi.dto.ReviewDTO;
 import com.multi.frame.Util;
 import com.multi.service.ReviewService;
@@ -45,6 +48,20 @@ public class ReviewController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return "main";
+	}
+	
+	@RequestMapping("/getreview")
+	public String getreview(Model model, int itemid, ReviewDTO review) {
+		List<ReviewDTO> list = null;
+		try {
+			list = service.getitemreview(itemid);
+			model.addAttribute("list", list);
+			model.addAttribute("center", dir+"reviewlist");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println(list);
 		return "main";
 	}
 	

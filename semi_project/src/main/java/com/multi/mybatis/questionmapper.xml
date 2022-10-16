@@ -20,4 +20,9 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		DELETE FROM question WHERE questionid=#{questionid}
 	</delete>
 	
+	<select id="getitemquestion" parameterType="Integer" resultType="QuestionDTO">
+		 SELECT * FROM question WHERE itemid=#{itemid}
+ 		 ORDER BY questionid DESC;
+	</select>
+	
 </mapper>

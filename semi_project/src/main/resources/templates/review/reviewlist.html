@@ -1,0 +1,40 @@
+<meta charset="utf-8">
+<style>
+	table > tbody > tr > td > img {
+		width: 140px;
+	}
+	
+	
+	.table table-striped{ 
+	width: 80%; 
+	}
+
+</style>
+
+<div class="content" id="reviewlist">
+<div class="container">
+<h2>상품리뷰</h2><br>
+<table class="table table-striped">
+	    <thead>
+	      <tr>
+	        <th>No</th>
+	        <th>Itemid</th>
+	        <th>Custid</th>
+	        <th>Content</th>
+	        <th>Rate</th>
+	        <th>Image</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr th:each="r:${list}">
+	        <td th:text="${r.reviewid}">reviewid</td>
+	        <td th:text="${r.itemid}">itemid</td>
+	        <td th:text="${r.custid}">custid</td>
+	        <td th:text="${r.content}">content</td>
+	        <td th:text="${r.rate}">rate</td>
+	        <td><img th:src="'/img/' + ${r.img}" alt="NoImage"></td>
+	      </tr>
+	    </tbody>
+	  </table>
+</div>
+</div>

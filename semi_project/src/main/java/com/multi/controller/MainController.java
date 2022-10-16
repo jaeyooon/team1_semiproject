@@ -10,14 +10,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.multi.dto.AddrDTO;
 import com.multi.dto.CustomerDTO;
 import com.multi.dto.GoodDTO;
 import com.multi.dto.ItemDTO;
+import com.multi.dto.QuestionDTO;
 import com.multi.service.AddrService;
 import com.multi.service.CustomerService;
 import com.multi.service.GoodService;
 import com.multi.service.ItemService;
+import com.multi.service.QuestionService;
 
 @Controller
 public class MainController {
@@ -33,6 +34,9 @@ public class MainController {
 	
 	@Autowired
 	AddrService addr_service;
+	
+	@Autowired
+	QuestionService ques_service;
 	
 	String dir = "addr/";
 	
@@ -115,6 +119,20 @@ public class MainController {
 			e.printStackTrace();
 		}
 		
+		return "main";
+	}
+	
+	@RequestMapping("/getqna")
+	public String getqna(Model model, int itemid, QuestionDTO ques) {
+		List<QuestionDTO> list = null;
+		try {
+			list = ques_service.getitemquestion(itemid);
+			model.addAttribute("list", list);
+			model.addAttribute("center", "qnalist");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println(list);
 		return "main";
 	}
 	
