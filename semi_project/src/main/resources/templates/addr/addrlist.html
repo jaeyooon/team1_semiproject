@@ -10,17 +10,18 @@
 <div class="content" id="cartlist">
 
 	<div class="container">
-		<h2>Address Lists</h2>
+		<h2>배송지 목록</h2><br>
 
 		<div class="table-responsive">
 			<table class="table table-bordered" id="dataTable" width="100%"
 				cellspacing="0">
 				<thead>
-					<tr>
+					<tr class="active">
 						<th>배송지명</th>
 						<th>배송지</th>
 						<th>수령인</th>
 						<th>연락처</th>
+						<th>수정 · 삭제</th>
 					</tr>
 				</thead>
 
@@ -30,19 +31,16 @@
 						<td th:text="${list.address}">주소</td>
 						<td th:text="${list.receiver}">받는 사람</td>
 						<td th:text="${list.tel}">연락처</td>
+						<td>
+							<div class="btn-group-vertical">
+							   <button type="button" class="btn btn-default">수정</button>
+							   <button type="button" class="btn btn-default">삭제</button>
+							</div>
+						</td>
 					</tr>
 				</tbody>
-				<!-- 	<tbody>
-					<tr th:each="obj:${list}">
-						<td><img th:src="'/img/'+${obj.imgname}"></td>
-						<td><a th:href="@{/item/detail(id=${obj.id})}"
-							th:text="${obj.id}"></a></td>
-						<td th:text="${obj.name}"></td>
-						<td th:text="${obj.price}"></td>
-						<td th:text="${#dates.format(obj.rdate, 'yyyy-MM-dd')}"></td>
-					</tr>
-				</tbody> -->
 			</table>
 		</div>
+		<button id="addr_btn" type="button" class="btn btn-info">배송지 등록</button>
 	</div>
 </div>

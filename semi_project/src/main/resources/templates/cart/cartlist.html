@@ -13,7 +13,7 @@ img {
 
 <div class="content" id="cartlist">
 	<div class="container">
-		<h2>Cart Lists</h2>
+		<h2>장바구니 목록</h2><br>
 		<table class="table">
 			<thead>
 				<tr>
@@ -22,6 +22,7 @@ img {
 					<th>Item Name</th>
 					<th>Count</th>
 					<th>Price</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -32,6 +33,7 @@ img {
 					<td th:text="${ca.item_name}">Name</td>
 					<td th:text="${ca.cnt}">Count</td>
 					<td th:text="${ca.item_price}">Price</td>
+					<td><button type="button" class="btn btn-default">삭제</button></td>
 				</tr>
 			</tbody>
 		</table>
