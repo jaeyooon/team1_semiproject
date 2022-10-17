@@ -11,14 +11,13 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM addr
 	</select>
 	<select id="myaddr" parameterType="String" resultType="AddrDTO">
-		select addrid, addrname, receiver, address, tel from addr
-		where custid = #{custid};
+		SELECT * FROM addr WHERE custid=#{custid}
 	</select>
 	<insert id="insert" parameterType="AddrDTO">
 		INSERT INTO addr VALUES (NULL, #{custid}, #{addrname}, #{receiver}, #{address}, #{tel})
 	</insert>
 	<update id="update" parameterType="AddrDTO">
-		UPDATE addr SET custid =#{custid}, addrname=#{addrname}, receiver=#{receiver}, address=#{address} WHERE addrid = #{addrid}
+		UPDATE addr SET addrname=#{addrname}, receiver=#{receiver}, address=#{address}, tel=#{tel} WHERE addrid=#{addrid}
 	</update>
 	<delete id="delete" parameterType="Integer">
 		DELETE FROM addr WHERE addrid = #{addrid}

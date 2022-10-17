@@ -37,7 +37,6 @@ public class AddressController {
 	public String updateimpl(Model model, AddrDTO addr) {
 		try {
 			addr_service.modify(addr);
-			System.out.println(addr);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
