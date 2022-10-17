@@ -1,5 +1,7 @@
 package com.multi.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,9 +44,10 @@ public class CustomerController {
 	}
 	
 	@RequestMapping("/delete")
-	public String delete(String id, Model model) {
+	public String delete(String id, Model model, HttpSession session ) {
 		try {
 			cust_service.remove(id);
+			session.invalidate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
