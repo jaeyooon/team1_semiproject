@@ -8,6 +8,9 @@
 h4{
 	font-weight: bold;
 }
+.radius_img{
+	border-radius: 3%;
+}
 </style>
 
 
@@ -17,7 +20,7 @@ h4{
 	<br>
 	<div class="row">
 		<div th:each="it : ${itemlist}" id="itemlist" class="col-sm-6">
-			<a th:href="@{/info(itemid=${it.itemid})}"><img th:src="'/img/'+${it.image}" alt="Image"></a>
+			<a th:href="@{/info(itemid=${it.itemid})}"><img th:src="'/img/'+${it.image}" class="radius_img" alt="Image"></a>
 			<h4 th:text="${it.pname}">name</h4>
 			<p th:text="${it.price}+'원'">price</p>
 			<p th:text="${it.checkstatus}">status</p>

@@ -26,6 +26,10 @@ h4{
 	margin: 10px 0 40px 60px
 }
 
+.radius_img{
+	border-radius: 3%;
+}
+
 </style>
 <script>
 
@@ -94,7 +98,7 @@ $(document).ready(function(){
 	<div class="row">
 			<div class="col-sm-5" id="c_section1">
 			
-				<img th:src="'/img/'+${info.image}"> 
+				<img th:src="'/img/'+${info.image}" class="radius_img"> 
 				
 			</div>
 			<div  class="col-sm-5" id="c_section2" th:if= "${session.logincust != null}">
