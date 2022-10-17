@@ -8,6 +8,7 @@
 table > tbody > tr > td > a >img {
 		width: 170px;
 	}
+	
 </style>
 
 <script>
@@ -20,34 +21,101 @@ function del(id){
 	}
 };
 
+$(document).ready(function(){
+	$('#up_btn').click(function(){
+		var num = $('#num').val();
+		var result = Number(num) + 1;
+		$('#num').val(result);
+	});
+	$('#down_btn').click(function(){
+		var num = $('#num').val();
+		if(num == '0'){
+			return;
+		}
+		var result = Number(num) - 1;
+		$('#num').val(result);
+	});
+	
+	$('#updatecnt_btn').click(function(){ 
+		var cartid = $('#cartid').text();
+		var custid = '[[${session.logincust.custid}]]';
+		var itemid = $('#itemid').text();
+		var cnt = $('#num').val();
+		var total = $('#total').text();
+		$.ajax({
+			url:'/updatecnt', 
+			data:{'cartid':cartid, 'custid':custid, 'itemid':itemid, 'cnt':cnt, 'total':total},
+			success:function(data){
+				$('#cartModal').modal();
+				}
+		});
+	});
+	
+});
 
 </script>
 
 <div class="content" id="cartlist">
 	<div class="container">
-		<h2>장바구니 목록</h2><br>
+		<h2>장바구니</h2><br>
 		<table class="table">
 			<thead>
 				<tr>
 					<th>No</th>
-					<th>Image</th>
-					<th>Item Name</th>
-					<th>Count</th>
-					<th>Price</th>
+					<th>상품 번호</th>
+					<th>상품 이미지</th>
+					<th>상품 이름</th>
+					<th>수량</th>
+					<th>총 상품금액</th>
 					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="ca : ${cartlist}">
-					<td th:text="${ca.cartid}">NO</td>
+					<td th:text="${ca.cartid}" id="cartid">NO</td>
+					<td th:text="${ca.itemid}" id="itemid">Itemid</td>
 					<td><a th:href="@{/info(itemid=${ca.itemid})}"><img th:src="'/img/' + ${ca.item_image}">
 					</a></td>
 					<td th:text="${ca.item_name}">Name</td>
-					<td th:text="${ca.cnt}">Count</td>
-					<td th:text="${ca.item_price}">Price</td>
+					<td>
+						<div class="col-sm-5">
+							 <input type="number" th:value="${ca.cnt}" class="form-control container" id="num" readonly="readonly">
+						 		<div class="btn-group">
+									<button type="button" class="btn btn-default btn-sm" id="up_btn">
+								          <span class="glyphicon glyphicon-plus"></span> 
+								     </button>
+								     <button type="button" class="btn btn-default btn-sm" id="down_btn">
+								          <span class="glyphicon glyphicon-minus"></span> 
+								     </button>
+					     		</div>
+					     		
+					     </div>
+					     <button type="button" class="btn btn-info" id="updatecnt_btn">수정</button>
+					</td>
+					<td th:text="${ca.item_price}" id="total">Price</td>
 					<td><button th:onclick="del([[${ca.cartid}]]);" type="button" class="btn btn-default">삭제</button></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
+</div>
+
+<!-- Modal -->
+<div class="container">
+  <div class="modal fade" id="cartModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">수량 변경이 되었습니다.</h4>
+        </div>
+        <div class="modal-body">
+        	<p>페이지 새로고침을 하여 총 상품금액을 확인해주세요.</p>
+      	</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

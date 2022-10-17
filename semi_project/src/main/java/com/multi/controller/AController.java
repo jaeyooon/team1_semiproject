@@ -61,4 +61,14 @@ public class AController {
 		}
 		return "";
 	}
+	
+	@RequestMapping("/updatecnt")
+	public Object updatecnt(CartDTO cart) {
+		try {
+			cart_service.modify(cart);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
 }

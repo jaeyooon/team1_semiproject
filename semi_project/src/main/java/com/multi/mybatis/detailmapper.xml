@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	
 	<select id="getorderdetail" parameterType="String" resultType="DetailDTO">
 		SELECT d.detailid, d.itemid, p.custid AS cust_id, p.purchaseid, i.image AS item_image, 
-		i.pname AS item_name, p.totalprice AS p_totalprice, 
+		i.pname AS item_name, i.price * d.count AS p_totalprice, 
 		i.price AS item_price, d.count FROM detail d
 		INNER JOIN item i ON d.itemid = i.itemid
 		INNER JOIN purchase p ON d.purchaseid = p.purchaseid
