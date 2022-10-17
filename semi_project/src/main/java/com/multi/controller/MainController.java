@@ -122,6 +122,17 @@ public class MainController {
 		return "main";
 	}
 	
+	@RequestMapping("/deletegood")
+	public String deletegood(Model model, String id, int goodid) {
+		try {
+			good_service.remove(goodid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:good?id="+id;
+	}
+	
 	@RequestMapping("/getqna")
 	public String getqna(Model model, int itemid, QuestionDTO ques) {
 		List<QuestionDTO> list = null;

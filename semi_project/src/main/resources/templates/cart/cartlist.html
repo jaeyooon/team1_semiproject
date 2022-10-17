@@ -5,18 +5,18 @@
 	display: flex;
 }
 
-img {
-	width: 200px;
-	height: 200px;
-}
+table > tbody > tr > td > a >img {
+		width: 170px;
+	}
 </style>
 
 <script>
 
 function del(id){
 	var c = confirm('삭제 하시겠습니까 ?');
+	var custid = '[[${session.logincust.custid}]]'; 
 	if(c == true){
-		location.href='/cart/delete?id='+id;
+		location.href='/cart/delete?id='+custid+'&cartid='+id;
 	}
 };
 
@@ -40,7 +40,7 @@ function del(id){
 			<tbody>
 				<tr th:each="ca : ${cartlist}">
 					<td th:text="${ca.cartid}">NO</td>
-					<td><a> <img th:src="'/img/' + ${ca.item_image}">
+					<td><a th:href="@{/info(itemid=${ca.itemid})}"><img th:src="'/img/' + ${ca.item_image}">
 					</a></td>
 					<td th:text="${ca.item_name}">Name</td>
 					<td th:text="${ca.cnt}">Count</td>

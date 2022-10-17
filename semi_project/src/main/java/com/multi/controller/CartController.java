@@ -33,12 +33,12 @@ public class CartController {
 	}
 
 	@RequestMapping("/delete")
-	public String delete(Model model, int id, String cust_id) {
+	public String delete(Model model, int cartid, String id) {
 		try {
-			cart_service.remove(id);
+			cart_service.remove(cartid);;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:get?id=" + cust_id;
+		return "redirect:get?id=" + id;
 	}
 }
